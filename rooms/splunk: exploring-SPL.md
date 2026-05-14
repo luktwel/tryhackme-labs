@@ -22,8 +22,6 @@ The first task required retrieving all events from the `windowslogs` index and c
 index=windowslogs
 ```
 
-![query](screenshots1/index.png)
-
 ---
 
 ## Task 2 — Finding the SourceIP with the Most Events
@@ -65,7 +63,7 @@ Example — filtering on destination IP and port:
 ```spl
 index=windowslogs DestinationIp="172.18.39.6" AND DestinationPort=135
 ```
-![destip](screenshots1/destinationipandport.png)
+![destip](screenshots1/destinationip&port.png)
 
 > **Lesson learned:** Field names in SPL are case-sensitive. I initially wrote `DestinationIp` and `DestinationPort` without proper casing, which returned no results. Always double-check field name casing.
 
