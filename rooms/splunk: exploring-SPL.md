@@ -3,7 +3,6 @@
 > **Room:** Splunk: Exploring SPL  
 > **Platform:** TryHackMe  
 > **Category:** Security Operations / SIEM  
-> **Difficulty:** Easy  
 
 ---
 
@@ -23,7 +22,7 @@ The first task required retrieving all events from the `windowslogs` index and c
 index=windowslogs
 ```
 
-*[screenshot: basic query]*
+![query](screenshots1/index.png)
 
 ---
 
@@ -31,7 +30,7 @@ index=windowslogs
 
 To find which source IP had the most recorded events, I used the sidebar in Splunk. By clicking **"More Fields"** and adding `SourceIp` to the selected fields, Splunk automatically shows a breakdown of the most frequent values for that field.
 
-*[screenshot: SourceIp filter in sidebar]*
+![sourceip](screenshots1/fieldsfilter.png)
 
 ---
 
@@ -44,9 +43,7 @@ For reproducibility, this can also be done directly in SPL:
 ```spl
 index=windowslogs earliest="04/15/2022:08:05:00" latest="04/15/2022:08:06:00"
 ```
-
-*[screenshot: date & time range picker]*
-
+![datetime](screenshots1/datetime.png)
 ---
 
 ## Task 4 — SPL Operators
@@ -68,8 +65,7 @@ Example — filtering on destination IP and port:
 ```spl
 index=windowslogs DestinationIp="172.18.39.6" AND DestinationPort=135
 ```
-
-*[screenshot: DestinationIp and DestinationPort query]*
+![destip](screenshots1/destinationipandport.png)
 
 > **Lesson learned:** Field names in SPL are case-sensitive. I initially wrote `DestinationIp` and `DestinationPort` without proper casing, which returned no results. Always double-check field name casing.
 
@@ -106,10 +102,9 @@ index=windowslogs | regex Image="\.exe$|\.jpeg$"
 Displays selected fields in a clean, readable table format. Useful for building event timelines.
 
 ```spl
-index=windowslogs HostName="liam.proost" | table _time SourceIp EventID Category
+index=windowslogs | table _time EventID Hostname SourceName
 ```
-
-*[screenshot: table output]*
+![table](screenshots1/table.png)
 
 ### `reverse`
 Reverses the order of events — useful for showing oldest events first.
@@ -176,7 +171,7 @@ To get results by country:
 index=windowslogs | iplocation SourceIp | stats count by Country
 ```
 
-*[screenshot: iplocation query]*
+![iplocation](screenshots1/iplocation.png)
 
 ---
 
