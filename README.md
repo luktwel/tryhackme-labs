@@ -17,10 +17,9 @@ The goal of this repo is to document my progress in cybersecurity and build prac
 
 ##  Structure
 
-- `/pre-security` → Beginner cybersecurity fundamentals  
-- `/security-101` → Core security concepts and theory  
-- `/rooms` → TryHackMe room writeups and notes  
-- `/notes` → Cheat sheets and quick reference material  
+- `/rooms` → TryHackMe room writeups and notes
+
+
 
 ---
 
