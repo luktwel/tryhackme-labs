@@ -40,19 +40,18 @@ The Fields Pane allows you to filter logs for specific values within a given fie
 
 **Time-based filter:** Events were filtered between `31/01/2021` and `02/02/2022` using the date & time range picker.
 
-> 📸 *Screenshot: date & time range filter set between 31/01/2021 and 02/02/2022*
+![datetime](screenshots1/datetimefilt.png)
 
 ---
 
 **Field-based filter:** Filtering on `UserName : emanda` to identify which source IP had the highest number of hits.
 
-> 📸 *Screenshot: source IP breakdown with UserName filter set to emanda*
+![emanda](screenshots1/emanda.png)
 
 ---
 
 **Exclusion filter:** Filtering on a specific IP address while excluding connections originating from New York — demonstrating how negative filters work in Kibana.
-
-> 📸 *Screenshot: filter excluding New York as source location*
+![ny](screenshots1/isnotny.png)
 
 ---
 
@@ -100,7 +99,7 @@ This example filters for a specific source IP address **and** a specific usernam
 Source_Country : "United States" AND (UserName : "Albert" OR UserName : "James")
 ```
 
-> 📸 *Screenshot: KQL query filtering on United States with users Albert and James*
+![james](screenshots1/jamesof.png)
 
 ---
 
@@ -108,7 +107,7 @@ Source_Country : "United States" AND (UserName : "Albert" OR UserName : "James")
 
 To find connections made after user Johnny Brown was terminated on 1 January 2022, I used a field-based filter on `UserName : "Johnny Brown"` and inspected the timeline graph to identify activity after the termination date.
 
-> 📸 *Screenshot: UserName filter applied for Johnny Brown with timeline graph visible*
+![johnne](screenshots1/johnnybrown.png)
 
 ---
 
