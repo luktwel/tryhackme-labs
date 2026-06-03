@@ -125,15 +125,13 @@ Source_Country : "United States" AND Source_State : "New York" AND Source_ip : *
 
 This correlation table shows all connections from New York, United States, grouped by source IP — useful for geographic analysis of access patterns.
 
-> 📸 *Screenshot: correlation table with Source_Country, Source_State, and Source_ip fields*
+![corr](screenshots1/customcorr.png)
 
 ---
 
 ### Tables
 
 KQL supports creating table views for structured data output, similar to the `| table` command in SPL. Tables were used to answer several of the room's questions by giving a clean, column-based view of the relevant fields.
-
-> 📸 *Screenshot: table view created to answer room questions*
 
 ---
 
