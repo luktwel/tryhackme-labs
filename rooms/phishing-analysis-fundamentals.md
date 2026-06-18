@@ -61,6 +61,19 @@ Hidden or Shortened Links: Hyperlinks may disguise their true destination (bit.l
 Malicious Attachments: Attachments are included and disguised as legitimate files (invoice.pdf.exe)
 
 
+in een van de laatste vragen werd er gevraagd om een attached email in de room te inspecteren en de vraag te beantwoorden, welke organisatie hier gespoofed werd, dit was niet moeilijk wnt dit staat gewoon in de email header. 
+
+er was oook een vraag om een email te inspecteren en terug te komen met de defanged x-originating-IP 
+hier heb ik met view message source gekeken naar de x-originating-IP en dee in cybercheff gekopieerd 
+ om het ip adres te defangen. 
+
+ insert foto cyberchef output*
+
+
+ ik vond deze room interessant om de basis van phishing en de anatomy van een email te begrijpen en meer mee in contact te komen. in volgende room writeups ga ik meer de praktische kant opzoeken en zelf kijken hoe ik eventueel phishing mails kan inspecteren/controleren en dit eventueel ook in een siem environment toe te passen, voor mij zijn dit soort rooms interessant omdat ik vabn blue team nog niet veel ervaring heb en op deze manier mijn kennis kan verbreden. 
+
+
+
 
 
 
