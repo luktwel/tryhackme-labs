@@ -1,82 +1,139 @@
-in deze room word er naar alle componenten bekeken hoe een email word opgemaakt en welke rpotocols deze volgt van afzender naar ontvanger. in deze room word er gebruik gemaakt van het prgoramma thunderbird voor diepere analysis van eventuele phishing emails. 
-wat goed is aan deze room is dat het begint bij de basics dus voor iemand zoals mij is dit perfect want ik heb de theorie hierachter nooit gezien. 
+# TryHackMe — Phishing Analysis Fundamentals
 
-een email is opgesplitist in 2 delen, de domain name en de username. 
+> **Room:** Phishing Analysis Fundamentals  
+> **Platform:** TryHackMe  
+> **Category:** Security Operations / Phishing Analysis  
 
-de domain name specifieert de mail server die verantwoordelijk is voor het vezenden van de email. de username is de ontvangers mailbox op de mail server. 
+---
 
+## Introduction
 
-als je een email stuurt, werken meerdere protocollen met elkaar om de mail van bij de verzender tot bij de ontvanger te krijgen. uw email server gebruikt een  van de volgende protocollen, afhankelijk van hoe de mailbox geconfigureerd is. 
+This room covers the anatomy of an email — how it is structured, which protocols it follows, and how it travels from sender to recipient. Thunderbird is used for deeper analysis of potential phishing emails.
 
-POP3: emails worden gedownload en bewaaard op 1 device, zijn ook alleen bereikbaar via dit device en de mails wordne verwijderd van de server na het downloaden. meer gebruik voor offline werken en meer privacy 
+This room is relevant to SOC work because email is the most common entry point for threat actors. Understanding what an email actually contains beyond what is visible is a core analyst skill.
 
-IMAP: hier worden de emails bewaard op de server en kunnen gedownload worden door meerdere devices, verstuurde mails wordden bewaard op de server en synchroniseert berichten over meerdere devices.  meer gebruikt zakelijk als meerdere collegas toegan moeten hebben tot dezelfde mailbox. ik denk dat dit voor een attacker interessanter is omdat de mails op een server blijven staan dus gevaarlijker is voor attackers of toch meer vulnerable voor attackers. pop3 eens de mail gedownload is is het verwijderd en kan een attacker zo goed als niet aan de mail geraken 
+---
 
+## Email Structure
 
-voor de volgende oefeningen maakte ik via de attached vm gebruik van het programma thunderbird voor diepere analysis van de ontvangen emails.
+An email address consists of two parts:
 
-iedereen kent een email header en de informatie die hier in staat, dit is vrij standaard maar er is nog een andere manier om zelfs meer data te kunnen bekijken van een email, data dat niet zomaar in de header staat meestal en dit is door de raw data te gaan bekijken van een email. 
+| Part | Description |
+|---|---|
+| **Username** | Identifies the recipient's mailbox on the mail server |
+| **Domain name** | Specifies which mail server is responsible for that mailbox |
 
-voor deze opdracht moest ik via thunderbird de raw data bekijken van een email attached in de attached vm lab dit ging als volgt: 
+---
 
-in de email samples file stond er een email die ik opende met thunderbird, eens deze open was klikte ik op view en daarna message source om de raw data te bekijken van de email. 
+## Email Protocols
 
-'insert foto raw data email'  
+The receiving mail server uses one of the following protocols depending on how the mailbox is configured:
 
+### POP3
+- Emails downloaded and stored on a **single device**
+- Deleted from the server after download
+- Only accessible from that one device
+- Better suited for offline use and privacy
 
-ik heb hiervoor niet met thunderbird gewerkt en wist eerlijk gezegd oook niet dat je een email dieper kon inspecteren dan enkel de mail bekijken. dit is een interessante inkijk op hoe een mail kan gemanipuleerd worden. 
+### IMAP
+- Emails stored **on the server**
+- Accessible from multiple devices
+- Synchronizes across all connected devices
+- Standard in business environments with shared mailbox access
 
+> **Attacker perspective:** IMAP is the more valuable target. Emails remain on the server, so a compromised account gives persistent access to the full mailbox history. With POP3, emails are removed from the server after download — significantly reducing what an attacker can retrieve.
 
-met deze informatie kon ik de vraag beantwoorde die vroeg welke ip de originating was. 
+---
 
+## Raw Source Analysis
 
-tegenover de email header heb je ook de email body, deze contains de message die verzonden wordt. emails worden enkel verzonden als plain-text of geformatteerd in html. html support foto's videos, gifs etc.. 
-hiervan kan je ook de underlying source inspecteren om te controleren op phishing attempts of malicous contents. 
+Standard email headers show sender, recipient, subject, and timestamp. The raw source reveals significantly more — routing data, server hops, encoding metadata, and hidden header fields.
 
-net zoals de email headers, kunnen wij ook de body van een mail verder inspecteren door view message code. thunderbrid blokkeert automatisch foto's uit een email die bekeken word. door de raw qource te bekijken kan je zien hoe de html in een mail is gestructureerd. 
+### Viewing raw source in Thunderbird
 
-in deze raw data staan eventueel ook attachments die zijn bijgevoegd bij de mail, zo kunnen deze ook geanaliseerd worden en geinspecteerd op eventuele malware of phishing pogingen. 
+```
+View → Message Source
+```
 
-'insert foto html code' 
+`[screenshot: raw email source]`
 
-er was een opdracht om de base 64 string in pdf te zetten om een flag te verkrijgen en de vraag in te vullen. 
-voor deze opdracht heb ik de base64 string gekopieerd naar apivoid om deze string te converten naar een online pdf. 
+From the raw source, the **originating IP address** (`X-Originating-IP`) is visible — a key field when investigating phishing emails that is not shown in the default view.
 
-inserrt foto pdf en string 
+---
 
+## Email Body Analysis
 
-ik vind deze  room interessant want hiervoor had ik eigenlijk nooit gekeken of beseft dat een email meer achterhoud dan dat het laat zien, dit maakt het in mijn ogen makkelijk voor threat actors om emails met malicious files of attachments te sturen. heb in deze room geleerd dat een email eigenlijk meer achterhoud dan mensen beseffen, en dat je met behulp van programmas of zelfs zonder programmas kan kijken wat er eigenlijk onder de motorkap zit van een email en hoe je hier kan herkennen of hier iets achter word gehouden of verstoptin de mail zoals malicious attachments. denk dat deze room interessant  is als iemand interesse heeft om in een soc center te werken omdat men hier dagelijks mee in contact zal komen.
+Emails are sent as either **plain text** or **HTML**. HTML supports images, links, and rich formatting — which also makes it a common vector for hiding malicious content.
 
+The body source is accessible the same way as the headers:
 
-nu ik meer weet over hoe een mail in elkaar zit, header, body, hoe deze te inspecteren en over hoe een mail versturen werkt, welke  protocollen  deze gebruikt is het interessant om te weten hoe een threat actor deze kan abusen, emails izjn dan ook de meest gebruikelijke entry points voor threat actors. 
+```
+View → Message Source
+```
 
-er zijn veel verschillende phishing types, denk maaar aan spam, vishing, smishing, spearphishing ( het targetten van een specifiek iemand en gebruik maken van persoonlijke informatie). er zijn veel verschillende attack tactics maar vele gebruiken wel dezelfde inhoud characteristics, deze zijn: 
+> Thunderbird blocks remote images from loading by default — this prevents tracking pixels from firing when opening a suspicious email.
 
+### What to look for in the HTML source
 
-Urgent Subject or Message: The email creates a sense of urgency (“Your account will be locked in 24 hours”)
-Brand Impersonation: The email is designed to mimic a legitimate organization (logos or colors matching a real company)
-Grammar & Spelling Issues: The message may contain errors, though with AI these are now less common (awkward phrasing or unnatural wording)
-Generic Content: The message lacks personalization (“Dear Customer” instead of your name)
-Hidden or Shortened Links: Hyperlinks may disguise their true destination (bit.ly/secure-login)
-Malicious Attachments: Attachments are included and disguised as legitimate files (invoice.pdf.exe)
+- **Hyperlinks** — visible text may differ from the actual `href` destination
+- **Attachments** — embedded as base64 strings, extractable for further analysis
 
+`[screenshot: HTML source of email body]`
 
-in een van de laatste vragen werd er gevraagd om een attached email in de room te inspecteren en de vraag te beantwoorden, welke organisatie hier gespoofed werd, dit was niet moeilijk wnt dit staat gewoon in de email header. 
+---
 
-er was oook een vraag om een email te inspecteren en terug te komen met de defanged x-originating-IP 
-hier heb ik met view message source gekeken naar de x-originating-IP en dee in cybercheff gekopieerd 
- om het ip adres te defangen. 
+## Base64 & Attachments
 
- insert foto cyberchef output*
+All email attachments are encoded as **base64**. This is not obfuscation — SMTP was designed for plain text, so binary files (PDFs, executables, images) must be converted to ASCII to travel over the protocol.
 
+Malicious attachments are embedded the same way as legitimate ones. Extracting and decoding a base64 string from raw source is a standard first step in attachment analysis.
 
- ik vond deze room interessant om de basis van phishing en de anatomy van een email te begrijpen en meer mee in contact te komen. in volgende room writeups ga ik meer de praktische kant opzoeken en zelf kijken hoe ik eventueel phishing mails kan inspecteren/controleren en dit eventueel ook in een siem environment toe te passen, voor mij zijn dit soort rooms interessant omdat ik vabn blue team nog niet veel ervaring heb en op deze manier mijn kennis kan verbreden. 
+`[screenshot: base64 string and decoded output]`
 
+---
 
+## Phishing Indicators
 
+Phishing emails share common characteristics regardless of type (spam, spear phishing, vishing, smishing):
 
+| Indicator | Example |
+|---|---|
+| **Urgent subject or message** | "Your account will be locked in 24 hours" |
+| **Brand impersonation** | Logos and colors mimicking a legitimate organization |
+| **Grammar & spelling issues** | Awkward phrasing — less reliable now due to AI-generated phishing |
+| **Generic content** | "Dear Customer" instead of the recipient's name |
+| **Hidden or shortened links** | `bit.ly/secure-login` masking a malicious destination |
+| **Malicious attachments** | Files disguised as legitimate documents (`invoice.pdf.exe`) |
 
+---
 
+## Practical Tasks
 
+### Identifying a spoofed organization
 
+The task required identifying which organization was being impersonated. The answer was visible in the email header — the sender domain did not match the organization it claimed to be from.
 
+### Defanging the X-Originating-IP
+
+**Steps:**
+1. Open the email in Thunderbird → `View → Message Source`
+2. Locate the `X-Originating-IP` field in the raw headers
+3. Copy the IP into **CyberChef** → apply **Defang IP Addresses**
+
+`[screenshot: CyberChef defang output]`
+
+Defanging is standard practice when documenting IOCs — it prevents accidental execution or clicks on malicious content in reports.
+
+---
+
+## Key Takeaways
+
+- Raw source analysis reveals data that is invisible in the standard email view — essential for phishing investigation
+- IMAP carries higher risk than POP3 from an attacker's perspective due to persistent server-side storage
+- Base64 is how all email attachments are transmitted, not a form of obfuscation — understanding this is required for attachment analysis
+- Thunderbird's Message Source view and CyberChef are practical tools for manual email forensics
+- Recognizing common phishing indicators is foundational for SOC work
+
+---
+
+*Written as part of my cybersecurity learning journey on TryHackMe. This writeup documents my personal workflow and understanding.*
