@@ -39,6 +39,27 @@ in deze raw data staan eventueel ook attachments die zijn bijgevoegd bij de mail
 
 'insert foto html code' 
 
+er was een opdracht om de base 64 string in pdf te zetten om een flag te verkrijgen en de vraag in te vullen. 
+voor deze opdracht heb ik de base64 string gekopieerd naar apivoid om deze string te converten naar een online pdf. 
+
+inserrt foto pdf en string 
+
+
+ik vind deze  room interessant want hiervoor had ik eigenlijk nooit gekeken of beseft dat een email meer achterhoud dan dat het laat zien, dit maakt het in mijn ogen makkelijk voor threat actors om emails met malicious files of attachments te sturen. heb in deze room geleerd dat een email eigenlijk meer achterhoud dan mensen beseffen, en dat je met behulp van programmas of zelfs zonder programmas kan kijken wat er eigenlijk onder de motorkap zit van een email en hoe je hier kan herkennen of hier iets achter word gehouden of verstoptin de mail zoals malicious attachments. denk dat deze room interessant  is als iemand interesse heeft om in een soc center te werken omdat men hier dagelijks mee in contact zal komen.
+
+
+nu ik meer weet over hoe een mail in elkaar zit, header, body, hoe deze te inspecteren en over hoe een mail versturen werkt, welke  protocollen  deze gebruikt is het interessant om te weten hoe een threat actor deze kan abusen, emails izjn dan ook de meest gebruikelijke entry points voor threat actors. 
+
+er zijn veel verschillende phishing types, denk maaar aan spam, vishing, smishing, spearphishing ( het targetten van een specifiek iemand en gebruik maken van persoonlijke informatie). er zijn veel verschillende attack tactics maar vele gebruiken wel dezelfde inhoud characteristics, deze zijn: 
+
+
+Urgent Subject or Message: The email creates a sense of urgency (“Your account will be locked in 24 hours”)
+Brand Impersonation: The email is designed to mimic a legitimate organization (logos or colors matching a real company)
+Grammar & Spelling Issues: The message may contain errors, though with AI these are now less common (awkward phrasing or unnatural wording)
+Generic Content: The message lacks personalization (“Dear Customer” instead of your name)
+Hidden or Shortened Links: Hyperlinks may disguise their true destination (bit.ly/secure-login)
+Malicious Attachments: Attachments are included and disguised as legitimate files (invoice.pdf.exe)
+
 
 
 
