@@ -55,7 +55,7 @@ Standard email headers show sender, recipient, subject, and timestamp. The raw s
 View → Message Source
 ```
 
-`[screenshot: raw email source]`
+![message source](screenshots1/originatingip.png)
 
 From the raw source, the **originating IP address** (`X-Originating-IP`) is visible — a key field when investigating phishing emails that is not shown in the default view.
 
@@ -78,7 +78,7 @@ View → Message Source
 - **Hyperlinks** — visible text may differ from the actual `href` destination
 - **Attachments** — embedded as base64 strings, extractable for further analysis
 
-`[screenshot: HTML source of email body]`
+![screenshotemaibody](screenshots1/screen1source.png)
 
 ---
 
@@ -88,7 +88,7 @@ All email attachments are encoded as **base64**. This is not obfuscation — SMT
 
 Malicious attachments are embedded the same way as legitimate ones. Extracting and decoding a base64 string from raw source is a standard first step in attachment analysis.
 
-`[screenshot: base64 string and decoded output]`
+![screenshotbase64stringanddecodedoutput](screenshots1/base64.png)
 
 ---
 
@@ -120,7 +120,7 @@ The task required identifying which organization was being impersonated. The ans
 2. Locate the `X-Originating-IP` field in the raw headers
 3. Copy the IP into **CyberChef** → apply **Defang IP Addresses**
 
-`[screenshot: CyberChef defang output]`
+![screenshotCyberChefefangoutput](screenshots1/cybercheff.png)
 
 Defanging is standard practice when documenting IOCs — it prevents accidental execution or clicks on malicious content in reports.
 
